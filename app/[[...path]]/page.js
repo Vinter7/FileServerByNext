@@ -7,15 +7,15 @@ const root = 'public/'
 export default ({ params }) => {
   let folds = params.path ?? []
   const path = folds.join('/')
-
+  const fold = folds.pop() ?? ''
   const files = {}
 
-  for (const i of readdirSync(root + path)) files[i] = path + '/' + i
+  for (const i of readdirSync(root + path)) files[i] = fold + '/' + i
 
   return (
     <>
       <h1>
-        <Link href="../">{path + '/'}</Link>
+        <Link href={'/' + folds.join('/')}>{path + '/'}</Link>
       </h1>
       <ul>
         {Object.entries(files).map(([k, v]) => (
