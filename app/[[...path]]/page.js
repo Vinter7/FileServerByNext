@@ -1,6 +1,6 @@
 import Link from 'next/link'
-const { readdirSync } = require('fs')
-// const { join } = require('path')
+const { readdirSync, writeFileSync } = require('fs')
+import Upload from '../Upload'
 
 const root = 'public/'
 
@@ -17,6 +17,7 @@ export default ({ params }) => {
       <h1>
         <Link href={'/' + folds.join('/')}>{path + '/'}</Link>
       </h1>
+      <Upload path={path} />
       <ul>
         {Object.entries(files).map(([k, v]) => (
           <li key={k}>
