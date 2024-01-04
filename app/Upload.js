@@ -11,9 +11,10 @@ export default ({ path }) => {
       method: 'POST',
       body: formData,
     })
-    if (res.ok) alert('upload success')
-    else alert('upload fail')
-    location.reload()
+    if (res.ok) {
+      alert('upload success')
+      location.reload()
+    } else alert('upload fail')
   }
 
   return <input type="file" onChange={upload} />

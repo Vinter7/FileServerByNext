@@ -1,6 +1,7 @@
 import Link from 'next/link'
-const { readdirSync, writeFileSync } = require('fs')
+const { readdirSync } = require('fs')
 import Upload from '../Upload'
+import Delete from '../Delete'
 
 const root = 'public/'
 
@@ -21,7 +22,9 @@ export default ({ params }) => {
       <ul>
         {Object.entries(files).map(([k, v]) => (
           <li key={k}>
-            <Link href={v}>{k}</Link>
+            {/* <div></div> */}
+            <Link href={v}>{k}</Link>&nbsp;&nbsp;&nbsp;
+            <Delete path={v} />
           </li>
         ))}
       </ul>
