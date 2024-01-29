@@ -3,11 +3,10 @@ const { pipeline } = require('stream')
 const root = './public/'
 
 export async function POST(req) {
-  const file = (await req.formData()).get('file')
+  const files = (await req.formData()).getAll('file')
 
-  pipeline(file.stream(), fs.createWriteStream(root + file.name), err =>
-    console.log(err || 'success')
-  )
+  for (const i of files)
+    pipeline(i.stream(), fs.createWriteStream(root + i.name), () => {})
 
   return Response.json('success')
 }
